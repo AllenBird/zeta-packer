@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+
+var extend = require('extend'),
+  merge = require('merge-stream'),
+  renderer = require('zeta-renderer'),
+  program = require('commander'),
+  packer = require('../lib/index'),
+  utils = require('../lib/utils'),
+  pkg = require('../package.json');
+
+var os = require('os');
+var fs = require('fs');
+var cpr = require('cpr');
+var path = require('path');
+var readline = require('readline');
+var sortedObject = require('sorted-object');
+
+var _exit = process.exit;
+var eol = os.EOL;
+
+var version = pkg.version;
+
+// Re-assign process.exit because of commander
+// TODO: Switch to a different command framework
+process.exit = exit
+
+utils.around(program, 'optionMissingArgument', function (fn, args) {
+  program.outputHelp()
+  fn.apply(this, args)
+  return { args: [], unknown: [] }
+})
+
+utils.before(program, 'outputHelp', function () {
+
+  this._helpShown = true
+});
+
+utils.before(program, 'unknownOption', function () {
+
+  this._allowUnknownOption = this._helpShown
+
+  if (!this._helpShown) {
+    program.outputHelp()
+  }
+})
+
+program
+  .version(version, '-v, --version')
+  .usage('[options] [dir]')
+  .option('-w, -watch', 'say sth...')
+  .option('-b, -build', 'say sth...')
+  .option('-t, --template [value]', 'shop | admin | login | register', /^(shop|admin|login|register)$/i)
+  .parse(process.argv);
+
+if (!exit.exited) {
+  main();
+}
+
+/**
+ * Main program.
+ */
+
+function main(argument) {
+  console.log('appName');
+}
+// function main() {
+
+//   // 用户输入的路径
+//   var destinationPath = program.args.shift() || 'zeta-template';
+//   var template = program.template || 'admin';
+//   // 获取绝对路径
+//   var appName = path.basename(path.resolve(destinationPath));
+//   console.log('appName:', appName);
+
+//   // 目标路径是否为空？
+//   emptyDirectory(destinationPath, function (empty) {
+
+//     if (empty || program.force) {
+//       /* 创建程序 */
+//       createApplication(appName, destinationPath, template);
+//     }
+//     else
+//     {
+//       /* 创建程序 */
+//       utils.confirm('destination is not empty, continue? [y/N] ', function (ok) {
+//         if (ok) {
+//           process.stdin.destroy();
+//           createApplication(appName, destinationPath, template);
+//         } else {
+//           console.error('aborting');
+//           exit(1);
+//         }
+//       });
+//     }
+//   });
+// }
+
