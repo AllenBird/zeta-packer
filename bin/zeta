@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 var extend = require('extend'),
-  merge = require('merge-stream'),
-  renderer = require('zeta-renderer'),
+  // renderer = require('zeta-renderer'),
   program = require('commander'),
   packer = require('../lib/index'),
   utils = require('../lib/utils'),
@@ -10,10 +9,10 @@ var extend = require('extend'),
 
 var os = require('os');
 var fs = require('fs');
-var cpr = require('cpr');
+// var cpr = require('cpr');
 var path = require('path');
-var readline = require('readline');
-var sortedObject = require('sorted-object');
+// var readline = require('readline');
+// var sortedObject = require('sorted-object');
 
 var _exit = process.exit;
 var eol = os.EOL;
@@ -22,7 +21,7 @@ var version = pkg.version;
 
 // Re-assign process.exit because of commander
 // TODO: Switch to a different command framework
-process.exit = exit
+process.exit = utils.exit
 
 utils.around(program, 'optionMissingArgument', function (fn, args) {
   program.outputHelp()
@@ -52,7 +51,7 @@ program
   .option('-t, --template [value]', 'shop | admin | login | register', /^(shop|admin|login|register)$/i)
   .parse(process.argv);
 
-if (!exit.exited) {
+if (!utils.exit.exited) {
   main();
 }
 
@@ -61,7 +60,10 @@ if (!exit.exited) {
  */
 
 function main(argument) {
-  console.log('appName');
+
+  console.log(program);
+  packer.gulp(program)
+
 }
 // function main() {
 
