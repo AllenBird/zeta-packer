@@ -2,7 +2,7 @@
   "name": "zeta-packer",
   "version": "0.0.1",
   "description": "web app packer & render",
-  "private": true,
+  "private": false,
   "main": "./lib/index.js",
   "bin": "./bin/zeta",
   "scripts": {
