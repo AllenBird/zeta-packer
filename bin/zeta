@@ -14,7 +14,6 @@ var path = require('path');
 // var readline = require('readline');
 // var sortedObject = require('sorted-object');
 
-var _exit = process.exit;
 var eol = os.EOL;
 
 var version = pkg.version;
