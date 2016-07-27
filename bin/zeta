@@ -47,6 +47,7 @@ program
   .usage('[options] [dir]')
   .option('-w, -watch', 'say sth...')
   .option('-b, -build', 'say sth...')
+  .option('-f, -file',  "config file's name")
   .option('-t, --template [value]', 'shop | admin | login | register', /^(shop|admin|login|register)$/i)
   .parse(process.argv);
 
@@ -60,39 +61,19 @@ if (!utils.exit.exited) {
 
 function main(argument) {
 
-  console.log(program);
-  packer.gulp(program)
+  /* config文件默认文件名 */
+  var configFile = (program.file || 'zeta') + '.json',
+      config = undefined;
+  var configBase = path.resolve(process.cwd(), configFile);
+  /* load file */
+  if (fs.existsSync(configBase)) {
+    var config = require(configBase);
+  }
+
+  packer.gulp(program, config);
+
+  if (program.watch) {
+    // render();
+  }
 
 }
-// function main() {
-
-//   // 用户输入的路径
-//   var destinationPath = program.args.shift() || 'zeta-template';
-//   var template = program.template || 'admin';
-//   // 获取绝对路径
-//   var appName = path.basename(path.resolve(destinationPath));
-//   console.log('appName:', appName);
-
-//   // 目标路径是否为空？
-//   emptyDirectory(destinationPath, function (empty) {
-
-//     if (empty || program.force) {
-//       /* 创建程序 */
-//       createApplication(appName, destinationPath, template);
-//     }
-//     else
-//     {
-//       /* 创建程序 */
-//       utils.confirm('destination is not empty, continue? [y/N] ', function (ok) {
-//         if (ok) {
-//           process.stdin.destroy();
-//           createApplication(appName, destinationPath, template);
-//         } else {
-//           console.error('aborting');
-//           exit(1);
-//         }
-//       });
-//     }
-//   });
-// }
-
