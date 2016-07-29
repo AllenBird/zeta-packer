@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var extend = require('extend'),
-  // renderer = require('zeta-renderer'),
+  renderer = require('zeta-renderer'),
   program = require('commander'),
   packer = require('../lib/index'),
   utils = require('../lib/utils'),
@@ -47,7 +47,8 @@ program
   .usage('[options] [dir]')
   .option('-w, -watch', 'say sth...')
   .option('-b, -build', 'say sth...')
-  .option('-f, -file',  "config file's name")
+  .option('-n, --no-vender', 'say sth...')
+  .option('-f, --file [value]',  "config file's name")
   .option('-t, --template [value]', 'shop | admin | login | register', /^(shop|admin|login|register)$/i)
   .parse(process.argv);
 
@@ -62,9 +63,13 @@ if (!utils.exit.exited) {
 function main(argument) {
 
   /* config文件默认文件名 */
-  var configFile = (program.file || 'zeta') + '.json',
+  var configFile = (program.file || 'zeta.json'),
       config = undefined;
   var configBase = path.resolve(process.cwd(), configFile);
+
+  /* 明确要Watch 或者 没指定Build的情况下 */
+  program.watch = (program.Watch || (!program.Build))
+
   /* load file */
   if (fs.existsSync(configBase)) {
     var config = require(configBase);
@@ -73,7 +78,7 @@ function main(argument) {
   packer.gulp(program, config);
 
   if (program.watch) {
-    // render();
+    // renderer(config.renderer);
   }
 
 }
