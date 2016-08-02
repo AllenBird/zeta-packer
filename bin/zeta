@@ -4,6 +4,7 @@ var extend = require('extend'),
   renderer = require('zeta-renderer'),
   program = require('commander'),
   packer = require('../lib/index'),
+  gutil = require('gulp-util'),
   utils = require('../lib/utils'),
   pkg = require('../package.json');
 
@@ -45,10 +46,10 @@ utils.before(program, 'unknownOption', function () {
 program
   .version(version, '-v, --version')
   .usage('[options] [dir]')
-  .option('-w, -watch', 'say sth...')
-  .option('-b, -build', 'say sth...')
-  .option('-n, --no-vender', 'say sth...')
-  .option('-f, --file [value]',  "config file's name")
+  .option('-w, --watch', 'say sth...')
+  .option('-b, --build', 'say sth...')
+  .option('-l, --lazy', '不更新vendor')
+  .option('-f, --file [value]',  "配置文件名")
   .option('-t, --template [value]', 'shop | admin | login | register', /^(shop|admin|login|register)$/i)
   .parse(process.argv);
 
@@ -68,17 +69,22 @@ function main(argument) {
   var configBase = path.resolve(process.cwd(), configFile);
 
   /* 明确要Watch 或者 没指定Build的情况下 */
-  program.watch = (program.Watch || (!program.Build))
+  program.watch = (program.watch || (!program.build))
+  program.configFile = configFile;
 
   /* load file */
   if (fs.existsSync(configBase)) {
     var config = require(configBase);
   }
 
-  packer.gulp(program, config);
+  packer.gulp(program, config, function () {
+    // 开始渲染
+    if (program.watch) {
+      renderer(config.renderer);
+      var port = config.renderer.port || renderer.config.port;
+      gutil.log(gutil.colors.red('renderer 启动:'), gutil.colors.gray('http://localhost:'+ port));
+    }
+  });
 
-  if (program.watch) {
-    // renderer(config.renderer);
-  }
 
 }
