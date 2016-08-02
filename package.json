@@ -1,6 +1,6 @@
 {
   "name": "zeta-packer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "web app packer & render",
   "private": false,
   "main": "./lib/index.js",
@@ -41,6 +41,11 @@
     "zeta-renderer": "latest"
   },
   "devDependencies": {
-    "handlebars": "^4.0.5"
+    "gulp-gunzip": "^0.0.3",
+    "gulp-gzip": "^1.4.0",
+    "gulp-tar": "^1.9.0",
+    "gulp-untar": "^0.0.4",
+    "handlebars": "^4.0.5",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
