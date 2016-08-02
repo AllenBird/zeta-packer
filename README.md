@@ -22,8 +22,8 @@ npm install cnpm -g --registry=https://registry.npm.taobao.org
 
 开始安装：
 ```
-npm install -g node-gyp
-npm install -g zeta-packer 
+cnpm install -g node-gyp
+cnpm install -g zeta-packer 
 ```
 
 命令行：
