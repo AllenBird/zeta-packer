@@ -16,8 +16,12 @@ windows下根据提示装一下：
 ```
 
 没有翻墙的情况下换taobao镜像会好一些：
+```
 npm config set registry https://registry.npm.taobao.org
+```
 
 开始安装：
+```
 npm install -g node-gyp
-npm install 
+npm install -g zeta-packer 
+```
