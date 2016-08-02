@@ -25,3 +25,18 @@ npm config set registry https://registry.npm.taobao.org
 npm install -g node-gyp
 npm install -g zeta-packer 
 ```
+
+命令行：
+```
+-h, --help              帮助指令
+-v, --version           版本信息
+-w, --watch             遍地debug版本（缺省）
+-b, --build             编译release版本
+-l, --lazy              不更新vendor
+-f, --file [value]      指定配置文件名（缺省zeta.json）
+
+执行：
+zeta-packer -w -f config.json  
+```
+
+
