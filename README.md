@@ -26,7 +26,7 @@ cnpm install -g node-gyp
 cnpm install -g zeta-packer 
 ```
 
-命令行：
+安装完成后可以用一下zeta-packer来管理前端项目：
 ```
 -h, --help              帮助指令
 -v, --version           版本信息
