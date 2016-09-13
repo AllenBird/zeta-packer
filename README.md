@@ -5,8 +5,8 @@ zeta-packer 是一个前端项目管理工具，集成了雪碧图，源码混�
 
 环境需求：
 ```
-node v4.x.x （其实低了也无妨）
-npm  v2.x.x （其实低了也无妨）
+node v4.x.x 
+npm  v2.x.x 
 python 2.7
 ```
 
