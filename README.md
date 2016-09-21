@@ -1,18 +1,13 @@
 # zeta-packer
-packer
+zeta-packer 是一个前端项目管理工具，集成了雪碧图，源码混淆，组件化，依赖加载等功能，欢迎使用。
 
 ## 安装
 
 环境需求：
 ```
-node v4.x.x （其实低了也无妨）
-npm  v2.x.x （其实低了也无妨）
+node v4.x.x 
+npm  v2.x.x 
 python 2.7
-```
-
-windows下根据提示装一下：
-```
-
 ```
 
 没有翻墙的情况下换taobao镜像会好一些：
@@ -26,7 +21,7 @@ cnpm install -g node-gyp
 cnpm install -g zeta-packer 
 ```
 
-命令行：
+安装完成后可以用一下zeta-packer来管理前端项目：
 ```
 -h, --help              帮助指令
 -v, --version           版本信息
