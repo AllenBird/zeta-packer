@@ -29,9 +29,12 @@ cnpm install -g zeta-packer
 -b, --build             编译release版本
 -l, --lazy              不更新vendor
 -f, --file [value]      指定配置文件名（缺省zeta.json）
+-r, --renderer          启动仿真渲染进行调试
+
 
 执行：
-zeta-packer -w -f config.json  
+zeta-packer -w -r 
+启动代码监听，仿真调试
 ```
 
 

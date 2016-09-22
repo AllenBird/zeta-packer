@@ -3,6 +3,7 @@
 var extend = require('extend'),
   renderer = require('zeta-renderer'),
   program = require('commander'),
+  opn = require('opn'),
   packer = require('../lib/index'),
   gutil = require('gulp-util'),
   utils = require('../lib/utils'),
@@ -46,11 +47,11 @@ utils.before(program, 'unknownOption', function () {
 program
   .version(version, '-v, --version')
   .usage('[options] [dir]')
-  .option('-w, --watch', 'say sth...')
-  .option('-b, --build', 'say sth...')
+  .option('-w, --watch', '不混淆，监听代码修改')
+  .option('-b, --build', '带压缩混淆的交付件')
   .option('-l, --lazy', '不更新vendor')
   .option('-f, --file [value]',  "配置文件名")
-  .option('-t, --template [value]', 'shop | admin | login | register', /^(shop|admin|login|register)$/i)
+  .option('-r, --renderer',  "启动仿真渲染进行调试")
   .parse(process.argv);
 
 if (!utils.exit.exited) {
@@ -79,10 +80,13 @@ function main(argument) {
 
   packer.gulp(program, config, function () {
     // 开始渲染
-    if (program.watch) {
+    if (program.renderer) {
       renderer(config.renderer);
       var port = config.renderer.port || renderer.config.port;
-      gutil.log(gutil.colors.red('renderer 启动:'), gutil.colors.gray('http://localhost:'+ port));
+      var index = renderer.config.index || 'index';
+      var url = 'http://localhost:'+ port + '/' + index;
+      gutil.log(gutil.colors.red('renderer 启动:'), gutil.colors.gray(url));
+      opn(url, {app: ['chrome']});
     }
   });
 

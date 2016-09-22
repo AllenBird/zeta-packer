@@ -1,6 +1,6 @@
 {
   "name": "zeta-packer",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "description": "web app packer & render",
   "private": false,
   "main": "./lib/index.js",
@@ -43,6 +43,7 @@
     "gulp.spritesmith": "^6.2.1",
     "handlebars": "^4.0.5",
     "merge-stream": "^1.0.0",
+    "opn": "^4.0.2",
     "pretty-hrtime": "^1.0.2",
     "request": "^2.74.0",
     "vinyl-source-stream": "^1.1.0",
