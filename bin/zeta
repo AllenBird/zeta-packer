@@ -70,6 +70,10 @@ function main(argument) {
       config = undefined;
   var configBase = path.resolve(process.cwd(), configFile);
 
+  if (program.release) {
+    program.build = true;
+    program.watch = false;
+  }
   /* 明确要Watch 或者 没指定Build的情况下 */
   program.innerwatch = (program.watch || (!program.build))
   program.configFile = configFile;
