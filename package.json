@@ -1,6 +1,6 @@
 {
   "name": "zeta-packer",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "web app packer & render",
   "private": false,
   "main": "./lib/index.js",
