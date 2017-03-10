@@ -48,12 +48,12 @@ utils.before(program, 'unknownOption', function () {
 program
   .version(version, '-v, --version')
   .usage('[options] [dir]')
-  .option('-w, --watch', '²»»ìÏı£¬¼àÌı´úÂëĞŞ¸Ä')
-  .option('-b, --build', '´øÑ¹Ëõ»ìÏıµÄ½»¸¶¼ş')
-  .option('-l, --lazy', '²»¸üĞÂvendor')
-  .option('-f, --file [value]',  "ÅäÖÃÎÄ¼şÃû")
-  .option('-r, --renderer',  "Æô¶¯·ÂÕæäÖÈ¾½øĞĞµ÷ÊÔ")
-  .option('-R, --release',  "release°æ±¾±àÒë")
+  .option('-w, --watch', 'ä¸æ··æ·†ï¼Œç›‘å¬ä»£ç ä¿®æ”¹')
+  .option('-b, --build', 'å¸¦å‹ç¼©æ··æ·†çš„äº¤ä»˜ä»¶')
+  .option('-l, --lazy', 'ä¸æ›´æ–°vendor')
+  .option('-f, --file [value]',  "é…ç½®æ–‡ä»¶å")
+  .option('-r, --renderer',  "å¯åŠ¨ä»¿çœŸæ¸²æŸ“è¿›è¡Œè°ƒè¯•")
+  .option('-R, --release',  "releaseç‰ˆæœ¬ç¼–è¯‘")
   .parse(process.argv);
 
 if (!utils.exit.exited) {
@@ -66,12 +66,16 @@ if (!utils.exit.exited) {
 
 function main(argument) {
 
-  /* configÎÄ¼şÄ¬ÈÏÎÄ¼şÃû */
+  /* configæ–‡ä»¶é»˜è®¤æ–‡ä»¶å */
   var configFile = (program.file || 'zeta.json'),
       config = undefined;
   var configBase = path.resolve(process.cwd(), configFile);
 
-  /* Ã÷È·ÒªWatch »òÕß Ã»Ö¸¶¨BuildµÄÇé¿öÏÂ */
+  if (program.release) {
+    program.build = true;
+    program.watch = false;
+  }
+  /* æ˜ç¡®è¦Watch æˆ–è€… æ²¡æŒ‡å®šBuildçš„æƒ…å†µä¸‹ */
   program.innerwatch = (program.watch || (!program.build))
   program.configFile = configFile;
 
@@ -81,13 +85,13 @@ function main(argument) {
   }
 
   packer.gulp(program, config, function () {
-    // ¿ªÊ¼äÖÈ¾
+    // å¼€å§‹æ¸²æŸ“
     if (program.renderer) {
       renderer(config.renderer);
       var port = config.renderer.port || renderer.config.port;
       var index = renderer.config.index || 'index';
       var url = 'http://localhost:'+ port + '/' + index;
-      gutil.log(gutil.colors.red('renderer Æô¶¯:'), gutil.colors.gray(url));
+      gutil.log(gutil.colors.red('renderer å¯åŠ¨:'), gutil.colors.gray(url));
       opn(url, {app: ['chrome']});
     }
   });
