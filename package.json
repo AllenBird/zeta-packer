@@ -46,6 +46,7 @@
     "pretty-hrtime": "^1.0.2",
     "request": "^2.74.0",
     "vinyl-source-stream": "^1.1.0",
+    "gulp-images2base64": "latest",
     "zeta-renderer": "latest"
   },
   "devDependencies": {
