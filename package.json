@@ -44,6 +44,7 @@
     "gulp-watch": "^4.3.9",
     "gulp-wrapper": "^1.0.0",
     "gulp.spritesmith": "^6.2.1",
+    "node-sass": "^3.4.2",
     "handlebars": "^4.0.5",
     "merge-stream": "^1.0.0",
     "opn": "^4.0.2",
