@@ -3,6 +3,7 @@
 var extend = require('extend'),
   renderer = require('zeta-renderer'),
   program = require('commander'),
+  _ = require('underscore'),
   opn = require('opn'),
   packer = require('../lib/index'),
   gutil = require('gulp-util'),
@@ -87,13 +88,15 @@ function main(argument) {
     // 开始渲染
     if (program.renderer) {
       renderer(config.renderer);
-      var port = config.renderer.port || renderer.config.port;
-      var index = renderer.config.index || 'index';
-      var url = 'http://localhost:'+ port + '/' + index;
+      var urlTemp = _.template("http://<%= ip %>:<%= port %>/<%= index %>")
+      url = urlTemp({
+        port: config.renderer.port || renderer.config.port,
+        index: renderer.config.index || 'index',
+        ip: utils.getIpv4() || '127.0.0.1'
+      })
       gutil.log(gutil.colors.red('renderer 启动:'), gutil.colors.gray(url));
-      opn(url, {app: ['chrome']});
+      opn(url);
     }
   });
-
-
 }
+

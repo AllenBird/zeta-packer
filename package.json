@@ -1,6 +1,6 @@
 {
-  "name": "zeta-packer",
-  "version": "0.1.20",
+  "name": "zeta-packer-bate",
+  "version": "0.2.0",
   "description": "web app packer & render",
   "private": false,
   "main": "./lib/index.js",
@@ -11,7 +11,7 @@
   "author": "dai.peng <15858208586@163.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/.git"
+    "url": "git@github.com:AllenBird/zeta-packer.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -44,12 +44,13 @@
     "gulp-watch": "^4.3.9",
     "gulp-wrapper": "^1.0.0",
     "gulp.spritesmith": "^6.2.1",
-    "node-sass": "^3.4.2",
     "handlebars": "^4.0.5",
     "merge-stream": "^1.0.0",
+    "node-sass": "^3.4.2",
     "opn": "^4.0.2",
     "pretty-hrtime": "^1.0.2",
     "request": "^2.74.0",
+    "underscore": "^1.8.3",
     "zeta-renderer": "latest"
   }
 }
