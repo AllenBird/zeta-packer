@@ -1,5 +1,6 @@
 # zeta-packer
-zeta-packer 是一个前端项目管理工具，集成了雪碧图，源码混淆，组件化，依赖加载等功能，欢迎使用。
+zeta-packer-amd
+js amd模式打包
 
 ## 安装
 
@@ -18,7 +19,7 @@ npm install cnpm -g --registry=https://registry.npm.taobao.org
 开始安装：
 ```
 cnpm install -g node-gyp
-cnpm install -g zeta-packer 
+cnpm install -g zeta-packer-amd 
 ```
 
 安装完成后可以用一下zeta-packer来管理前端项目：
@@ -37,4 +38,77 @@ zeta-packer -w -r
 启动代码监听，仿真调试
 ```
 
-
+```
+{
+  "rootPath": "public",
+  "manifest": "layout.hbs",
+  "styles": {
+    "distDir": "assets/styles",
+    "map": {
+      "app.css": "app/{styles,components}/**/*.{css,scss}"
+    }
+  },
+  "scripts": {
+    "distDir": "assets/scripts",
+    "map": {
+      "app.js": "app/{components_vendor,scripts}/**/*.{js,jsx,es6}",
+      "*": "app/components/**/*.{js,jsx,es6}",
+      "vendor.js": "vendor/*.js"
+    },
+    "order": [
+      "zetabase.js"
+    ]
+  },
+  "views": {
+    "distDir": "views",
+    "src": [
+      "app/views/**/*.hbs"
+    ]
+  },
+  "components": {
+    "distDir": "components",
+    "src": [
+      "app/components/**/*.hbs",
+      "app/components_vendor/**/*.hbs"
+    ]
+  },
+  "templates": {
+    "distDir": "../vendor",
+    "map": {
+      "templates.js": "app/{components_vendor,components}/**/templates/**/*.hbs"
+    }
+  },
+  "images": {
+    "distDir": "assets/images",
+    "escaped": "/assets/images/icons.png",
+    "src": [
+      "app/images/*.png",
+      "app/images/other-images/*.png"
+    ]
+  },
+  "files": {
+    "copy": {
+      "./": "app/files/**/*",
+      "./assets/styles/fonts/": "app/images/fonts/**/*",
+      "./assets/images/other-images/": "app/images/other-images/*"
+    }
+  },
+  "renderer": {
+    "port": 8080,
+    "filesHome": "public",
+    "index": "demo"
+  },
+  "vendor": [
+    {
+      "name": "zetabase.js",
+      "version": "master",
+      "url": "E:\\git-zeta\\zeta-base\\public\\assets\\scripts\\zetabase.js"
+    },
+    {
+      "name": "xx.css",
+      "version": "master",
+      "url": "http://zeta.tesir.top/master/base/assets/styles/theme-geely-winterfell.css"
+    }
+  ]
+}
+```
