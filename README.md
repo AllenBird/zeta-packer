@@ -25,12 +25,12 @@ cnpm install -g zeta-packer
 ```
 -h, --help              帮助指令
 -v, --version           版本信息
--w, --watch             遍地debug版本（缺省）
--b, --build             编译release版本
+-w, --watch             不混淆，监听代码修改（缺省）
+-b, --build             带压缩混淆的交付件
 -l, --lazy              不更新vendor
 -f, --file [value]      指定配置文件名（缺省zeta.json）
 -r, --renderer          启动仿真渲染进行调试
-
+-R, --release           release版本编译
 
 执行：
 zeta-packer -w -r 
