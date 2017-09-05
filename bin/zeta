@@ -70,6 +70,9 @@ function main(argument) {
       config = undefined;
   var configBase = path.resolve(process.cwd(), configFile);
 
+  //只有在watch的时候使用source map
+  program.useSourceMaps = program.watch ? true : false;
+
   if (program.release) {
     program.build = true;
     program.watch = false;
