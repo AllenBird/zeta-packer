@@ -6,7 +6,7 @@
   "main": "./lib/index.js",
   "bin": "./bin/zeta",
   "scripts": {
-    "test": "zeta ./test"
+    "test": "zeta ./test",
     "start": "zeta ./test"
   },
   "author": "dai.peng <15858208586@163.com>",
