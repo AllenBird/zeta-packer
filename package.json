@@ -1,12 +1,13 @@
 {
   "name": "zeta-packer",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "web app packer & render",
   "private": false,
   "main": "./lib/index.js",
   "bin": "./bin/zeta",
   "scripts": {
     "test": "zeta ./test"
+    "start": "zeta ./test"
   },
   "author": "dai.peng <15858208586@163.com>",
   "repository": {
